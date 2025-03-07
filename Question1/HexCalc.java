@@ -1,9 +1,32 @@
 public class HexCalc{
     public int hexToDec(String hex){
-        // convert hex to dec
+        int dec = 0;
+        int multiplier = 1; 
+        for(int i = hex.length()-1;i>=0;i--){
+            char c = hex.charAt(i); 
+            if(c>="0"&&c<="9"){
+                dec += (c - 48)*multiplier; 
+            }else if(c>="A"&&c<"F"){
+                dec += (c-55)*multiplier; 
+            }else{
+                throw new IllegalArgumentException("Enter valid hexadecimal Number"); 
+            }
+            multiplier=multiplier*multiplier; 
+        }
+        return dec; 
     }
     public String decToHex(int dec){
-        // convert dec to hex
+        String hex = ""; 
+        while(dec!=0){
+            int digit = dec%16; 
+            if(digit > 9){
+                digit += 55; 
+            }
+            char c = char(digit);
+            hex = c + hex;
+            digit = digit/16;  
+        }
+        return hex; 
     }
     public String addHex(String first,String second){
         return decToHex(hexToDec(first)+hexToDec(second));
