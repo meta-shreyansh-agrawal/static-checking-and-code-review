@@ -4,14 +4,14 @@ public class HexCalc{
         int multiplier = 1; 
         for(int i = hex.length()-1;i>=0;i--){
             char c = hex.charAt(i); 
-            if(c>="0"&&c<="9"){
+            if(c>='0'&&c<='9'){
                 dec += (c - 48)*multiplier; 
-            }else if(c>="A"&&c<"F"){
+            }else if(c>='A'&&c<'F'){
                 dec += (c-55)*multiplier; 
             }else{
                 throw new IllegalArgumentException("Enter valid hexadecimal Number"); 
             }
-            multiplier=multiplier*multiplier; 
+            multiplier=multiplier*16; 
         }
         return dec; 
     }
@@ -21,10 +21,12 @@ public class HexCalc{
             int digit = dec%16; 
             if(digit > 9){
                 digit += 55; 
+            }else{
+                digit += 48;
             }
-            char c = char(digit);
+            char c = (char)digit;
             hex = c + hex;
-            digit = digit/16;  
+            dec = dec/16;  
         }
         return hex; 
     }
