@@ -1,4 +1,7 @@
 import java.util.ArrayList; 
+import java.util.Comparator; 
+import java.util.Collections; 
+import java.util.Arrays; 
 
 public class JobScheduler{
     
@@ -12,8 +15,13 @@ public class JobScheduler{
         this.jobs = jobs; 
 
         // Sorting jobs based on arrival time
-        jobs.sort((a,b)->a.arrivalTime.compareTo(b.arrivalTime)); 
-        
+        Collections.sort(jobs, new Comparator<Job>() { 
+            @Override 
+            public int compare(Job o1, Job o2) { 
+                return Integer.compare(o1.arrivalTime, o2.arrivalTime); 
+            } 
+        });         
+
         // Get the value of arrivalTimeOfFirstJob
         this.arrivalTimeOfFirstJob = jobs.get(0).arrivalTime; 
 
@@ -35,6 +43,7 @@ public class JobScheduler{
     }
 
     int getCompletionTime(Job job){
+        int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
             if(time<currJob.arrivalTime){
@@ -50,7 +59,8 @@ public class JobScheduler{
     }
 
     int getTurnAroundTime(Job job){
-         for(int i =0;i<jobs.size();i++){
+        int time = 0; 
+        for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
             if(time<currJob.arrivalTime){
                 time = currJob.arrivalTime; 
@@ -65,6 +75,7 @@ public class JobScheduler{
     }
 
     int getWaitingTime(Job job){
+        int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
             if(time<currJob.arrivalTime){
@@ -100,8 +111,6 @@ public class JobScheduler{
 // average waiting time of processes
 
 // Max waiting time among all processes
-
-
 
 
 //TODO: getter,setter
