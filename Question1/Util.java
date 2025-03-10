@@ -12,6 +12,7 @@ public class Util{
                 }
             }catch(IllegalArgumentException e){
                 System.out.println("Enter valid Number"); 
+                sc.nextLine();
             }
         }
     }
@@ -35,6 +36,7 @@ public class Util{
                 if(validated)return str; 
             }catch(IllegalArgumentException e){
                 System.out.println("Enter valid hexadecimal number"); 
+                sc.nextLine();
             }
         }
     }
@@ -50,6 +52,7 @@ public class Util{
                 }
             }catch(IllegalArgumentException e){
                 System.out.println("Enter valid Whole Number"); 
+                sc.nextLine();
             }
         }
     }
