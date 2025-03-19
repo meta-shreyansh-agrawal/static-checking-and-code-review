@@ -1,6 +1,5 @@
 import java.util.ArrayList; 
 import java.util.Scanner; 
-import java.util.Arrays;
 public class Assignment{
 
     public static void main(String[] args){
@@ -25,15 +24,15 @@ public class Assignment{
             switch(choice){
                 case 1:
                     no = printJobsGetNo(scheduler,sc);  
-                    System.out.println("Completion time is: "+scheduler.getCompletionTime(scheduler.jobs.get(no-1)));
+                    System.out.println("Completion time is: "+scheduler.getCompletionTime(no-1));
                     break; 
                 case 2:
                     no = printJobsGetNo(scheduler,sc);  
-                    System.out.println("Turn Around time is: "+scheduler.getTurnAroundTime(scheduler.jobs.get(no-1)));
+                    System.out.println("Turn Around time is: "+scheduler.getTurnAroundTime(no-1));
                     break; 
                 case 3:
                     no = printJobsGetNo(scheduler,sc);  
-                    System.out.println("Waiting time is: "+scheduler.getWaitingTime(scheduler.jobs.get(no-1)));
+                    System.out.println("Waiting time is: "+scheduler.getWaitingTime(no-1));
                     break; 
                 case 4:
                     System.out.println("Average waiting time is: "+scheduler.getAverageWaitingTime()); 

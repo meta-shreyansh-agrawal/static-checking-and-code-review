@@ -1,7 +1,6 @@
 import java.util.ArrayList; 
 import java.util.Comparator; 
 import java.util.Collections; 
-import java.util.Arrays; 
 
 public class JobScheduler{
     
@@ -9,7 +8,7 @@ public class JobScheduler{
 
     int arrivalTimeOfFirstJob;
     int averageWaitingTime;
-    int maxWaitingTime; 
+    int maxWaitingTime;
     
     JobScheduler(ArrayList<Job> jobs){
         this.jobs = jobs; 
@@ -42,7 +41,7 @@ public class JobScheduler{
         }
     }
 
-    int getCompletionTime(Job job){
+    int getCompletionTime(int no){
         int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
@@ -51,14 +50,14 @@ public class JobScheduler{
             }
             time += currJob.burstTime;
             int completionTime = time - this.arrivalTimeOfFirstJob; 
-            if(currJob == job){
+            if(currJob == jobs.get(no)){
                 return completionTime; 
             }             
         }
         return -1; 
     }
 
-    int getTurnAroundTime(Job job){
+    int getTurnAroundTime(int no){
         int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
@@ -67,14 +66,14 @@ public class JobScheduler{
             }
             time += currJob.burstTime;
             int turnAroundTime = time - currJob.arrivalTime; 
-            if(currJob == job){
+            if(currJob == jobs.get(no)){
                 return turnAroundTime; 
             }
         }
         return -1;
     }
 
-    int getWaitingTime(Job job){
+    int getWaitingTime(int no){
         int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
@@ -83,11 +82,12 @@ public class JobScheduler{
             }
             time += currJob.burstTime;
             int waitingTime = time - currJob.arrivalTime - currJob.burstTime; 
-            if(currJob == job){
+            if(currJob == jobs.get(i)){
                 return waitingTime; 
             }
         }
         return -1; 
+
     }
 
     int getAverageWaitingTime(){

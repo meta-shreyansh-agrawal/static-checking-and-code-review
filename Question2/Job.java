@@ -1,5 +1,5 @@
 public class Job{
-    int arrivalTime; 
+    int arrivalTime;
     int burstTime;
 
     Job(int arrivalTime,int burstTime){
