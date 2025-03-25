@@ -17,22 +17,22 @@ public class Assignment{
         }
         JobScheduler scheduler = new JobScheduler(jobs); 
         int choice = 1; 
-        int no = 0; 
+        int id = 0; 
         while(true){
             System.out.println("Enter choice\n1)Get Completion Time\n2)Get Turn Around Time\n3)Get waiting time\n4)Average Waiting Time\n5)Max Waiting Time\n0)Exit");
             choice = Util.inputNumberInRange(sc,0,5); 
             switch(choice){
                 case 1:
-                    no = printJobsGetNo(scheduler,sc);  
-                    System.out.println("Completion time is: "+scheduler.getCompletionTime(no-1));
+                    id = printJobsGetID(scheduler,sc);  
+                    System.out.println("Completion time is: "+scheduler.getCompletionTime(id));
                     break; 
                 case 2:
-                    no = printJobsGetNo(scheduler,sc);  
-                    System.out.println("Turn Around time is: "+scheduler.getTurnAroundTime(no-1));
+                    id = printJobsGetID(scheduler,sc);  
+                    System.out.println("Turn Around time is: "+scheduler.getTurnAroundTime(id));
                     break; 
                 case 3:
-                    no = printJobsGetNo(scheduler,sc);  
-                    System.out.println("Waiting time is: "+scheduler.getWaitingTime(no-1));
+                    id = printJobsGetID(scheduler,sc);  
+                    System.out.println("Waiting time is: "+scheduler.getWaitingTime(id));
                     break; 
                 case 4:
                     System.out.println("Average waiting time is: "+scheduler.getAverageWaitingTime()); 
@@ -48,16 +48,17 @@ public class Assignment{
             }
         }
     }
-    public static int printJobsGetNo(JobScheduler scheduler,Scanner sc){
+    public static int printJobsGetID(JobScheduler scheduler,Scanner sc){
             for(int i = 0;i<scheduler.jobs.size();i++){
                 Job j = scheduler.jobs.get(i);
                 System.out.println("Job no."+(i+1));
+                System.out.println("Job id."+j.getID());
                 System.out.println("Arrival Time: "+j.arrivalTime);
                 System.out.println("Burst Time: "+j.burstTime);
             }
-            System.out.print("Enter Job no to get time: ");
-            int no = Util.inputNumberInRange(sc,1,scheduler.jobs.size());
-            return no; 
+            System.out.print("Enter Job ID to get time: ");
+            int id = Util.inputNumberInRange(sc,1,scheduler.jobs.size());
+            return id; 
         }
 
 }

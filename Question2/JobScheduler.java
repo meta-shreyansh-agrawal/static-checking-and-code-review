@@ -41,7 +41,7 @@ public class JobScheduler{
         }
     }
 
-    int getCompletionTime(int no){
+    int getCompletionTime(int id){
         int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
@@ -50,14 +50,14 @@ public class JobScheduler{
             }
             time += currJob.burstTime;
             int completionTime = time - this.arrivalTimeOfFirstJob; 
-            if(currJob == jobs.get(no)){
+            if(currJob.getID() == id){
                 return completionTime; 
             }             
         }
         return -1; 
     }
 
-    int getTurnAroundTime(int no){
+    int getTurnAroundTime(int id){
         int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
@@ -66,14 +66,14 @@ public class JobScheduler{
             }
             time += currJob.burstTime;
             int turnAroundTime = time - currJob.arrivalTime; 
-            if(currJob == jobs.get(no)){
+            if(currJob.getID() == id){
                 return turnAroundTime; 
             }
         }
         return -1;
     }
 
-    int getWaitingTime(int no){
+    int getWaitingTime(int id){
         int time = 0; 
         for(int i =0;i<jobs.size();i++){
             Job currJob = jobs.get(i);
@@ -82,7 +82,7 @@ public class JobScheduler{
             }
             time += currJob.burstTime;
             int waitingTime = time - currJob.arrivalTime - currJob.burstTime; 
-            if(currJob == jobs.get(i)){
+            if(currJob.getID() == id){
                 return waitingTime; 
             }
         }
@@ -111,6 +111,3 @@ public class JobScheduler{
 // average waiting time of processes
 
 // Max waiting time among all processes
-
-
-//TODO: getter,setter
